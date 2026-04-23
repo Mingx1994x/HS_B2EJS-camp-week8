@@ -14,7 +14,7 @@ async function placeOrder(userInfo) {
   // 請實作此函式
   // 提示：先用 utils validateOrderUser() 驗證使用者資料，驗證失敗時回傳 { success: false, errors: [...] }
   // 驗證通過後，呼叫 createOrder() 建立訂單
-  // 使用 try/catch 處理錯誤，回傳格式：{ success: true, data: ... } / { success: false, errors: [...] }
+  // 回傳格式：{ success: true, data: ... } / { success: false, errors: [...] }
 }
 
 /**
@@ -52,7 +52,7 @@ async function getPaidOrders() {
  */
 async function updatePaymentStatus(orderId, isPaid) {
   // 請實作此函式
-  // 提示：呼叫 updateOrderStatus()，使用 try/catch 處理錯誤
+  // 提示：呼叫 updateOrderStatus()
   // 回傳格式：{ success: true, data: ... } / { success: false, error: ... }
 }
 
@@ -63,7 +63,7 @@ async function updatePaymentStatus(orderId, isPaid) {
  */
 async function removeOrder(orderId) {
   // 請實作此函式
-  // 提示：呼叫 deleteOrder()，使用 try/catch 處理錯誤
+  // 提示：呼叫 deleteOrder()
   // 回傳格式：{ success: true, data: ... } / { success: false, error: ... }
 }
 
