@@ -71,10 +71,17 @@ async function updatePaymentStatus(orderId, isPaid) {
   // 請實作此函式
   // 提示：呼叫 updateOrderStatus()
   // 回傳格式：{ success: true, data: ... } / { success: false, error: ... }
-  const data = await updateOrderStatus(orderId, isPaid);
-  return {
-    success: true,
-    data
+  try {
+    const data = await updateOrderStatus(orderId, isPaid);
+    return {
+      success: true,
+      data
+    }
+  } catch (error) {
+    return {
+      success: false,
+      error: error.message
+    }
   }
 }
 
@@ -87,10 +94,17 @@ async function removeOrder(orderId) {
   // 請實作此函式
   // 提示：呼叫 deleteOrder()
   // 回傳格式：{ success: true, data: ... } / { success: false, error: ... }
-  const data = await deleteOrder(orderId);
-  return {
-    success: true,
-    data
+  try {
+    const data = await deleteOrder(orderId);
+    return {
+      success: true,
+      data
+    }
+  } catch (error) {
+    return {
+      success: false,
+      error: error.message
+    }
   }
 }
 

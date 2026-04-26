@@ -18,7 +18,7 @@ async function fetchProducts() {
     const res = await axios.get(`${BASE_URL}/api/livejs/v1/customer/${API_PATH}/products`);
     return res.data.products
   } catch (error) {
-    console.log(error);
+    throw new Error(error.response?.data?.message || '取得產品列表失敗')
   }
 }
 
@@ -33,7 +33,7 @@ async function fetchCart() {
     const { carts, total, finalTotal } = res.data;
     return { carts, total, finalTotal }
   } catch (error) {
-    console.log(error);
+    throw new Error(error.response?.data?.message || '取得購物車失敗')
   }
 }
 
@@ -55,7 +55,7 @@ async function addToCart(productId, quantity) {
 
     return res.data
   } catch (error) {
-    console.log(error);
+    throw new Error(error.response?.data?.message || '加入購物車失敗')
   }
 }
 
@@ -77,7 +77,7 @@ async function updateCartItem(cartId, quantity) {
 
     return res.data
   } catch (error) {
-    console.log(error);
+    throw new Error(error.response?.data?.message || '更新購物車商品失敗')
   }
 }
 
@@ -93,7 +93,7 @@ async function deleteCartItem(cartId) {
 
     return res.data
   } catch (error) {
-    console.log(error);
+    throw new Error(error.response?.data?.message || '刪除購物車商品失敗')
   }
 }
 
@@ -108,7 +108,7 @@ async function clearCart() {
 
     return res.data
   } catch (error) {
-    console.log(error);
+    throw new Error(error.response?.data?.message || '清空購物車失敗')
   }
 }
 
@@ -128,7 +128,7 @@ async function createOrder(userInfo) {
 
     return res.data
   } catch (error) {
-    console.log(error);
+    throw new Error(error.response?.data?.message || '建立訂單失敗')
   }
 }
 
@@ -157,7 +157,7 @@ async function fetchOrders() {
 
     return res.data.orders
   } catch (error) {
-    console.log(error);
+    throw new Error(error.response?.data?.message || '取得訂單列表失敗')
   }
 }
 
@@ -183,7 +183,7 @@ async function updateOrderStatus(orderId, isPaid) {
 
     return res.data
   } catch (error) {
-    console.log(error);
+    throw new Error(error.response?.data?.message || '更新訂單失敗')
   }
 }
 
@@ -203,7 +203,7 @@ async function deleteOrder(orderId) {
 
     return res.data
   } catch (error) {
-    console.log(error);
+    throw new Error(error.response?.data?.message || '刪除訂單失敗')
   }
 
 }
