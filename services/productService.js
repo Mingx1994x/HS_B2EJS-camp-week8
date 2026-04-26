@@ -75,12 +75,15 @@ function displayProducts(products) {
   //    原價：NT$ 1,000
   //    售價：NT$ 800 (8折)
   // ----------------------------------------
+  console.log('產品列表：');
+  console.log('----------------------------------------');
   products.forEach((product, index) => {
     const { title, category, price, origin_price } = product;
     console.log(`${index + 1}. ${title}`);
     console.log(`分類：${category}`);
     console.log(`原價：NT$ ${formatCurrency(origin_price)}`);
-    console.log(`售價：NT$ ${formatCurrency(price)} (${getDiscountRate(product)})`)
+    console.log(`售價：NT$ ${formatCurrency(price)} (${getDiscountRate(product)})`);
+    console.log('----------------------------------------');
   })
 }
 
