@@ -133,20 +133,21 @@ function displayCart(cart) {
   // 商品總計：NT$ 1,600
   // 折扣後金額：NT$ 1,600
   const { carts, total, finalTotal } = cart;
-  if (!carts || carts.length === 0) return '購物車是空的'
+  if (!carts || carts.length === 0) {
+    console.log('購物車是空的');
+    return
+  }
 
   console.log('購物車內容：');
   console.log('----------------------------------------');
-
   carts.forEach((cartItem, index) => {
     const { quantity, product } = cartItem;
     console.log(`${index + 1}. ${product.title}`);
     console.log(`數量：${quantity}`);
     console.log(`單價：NT$ ${formatCurrency(product.origin_price)}`);
     console.log(`小計：NT$ ${formatCurrency(product.price)}`);
-    console.log('----------------------------------------');
   })
-
+  console.log('----------------------------------------');
   console.log(`商品總計：NT$ ${formatCurrency(total)}`)
   console.log(`折扣後金額：NT$ ${formatCurrency(finalTotal)}`)
 }
