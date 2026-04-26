@@ -11,6 +11,9 @@ const dayjs = require('dayjs');
  */
 function getDiscountRate(product) {
   // 請實作此函式
+  const { price, origin_price } = product;
+  const discount = Math.round((price / origin_price) * 10);
+  return `${discount}折`
 }
 
 /**
@@ -20,6 +23,7 @@ function getDiscountRate(product) {
  */
 function getAllCategories(products) {
   // 請實作此函式
+  return [...new Set(products.map(product => product.category))];
 }
 
 /**
@@ -30,6 +34,7 @@ function getAllCategories(products) {
 function formatDate(timestamp) {
   // 請實作此函式
   // 提示：dayjs.unix...
+  return dayjs.unix(timestamp).format('YYYY/MM/DD HH:mm')
 }
 
 /**
@@ -43,6 +48,10 @@ function getDaysAgo(timestamp) {
   // 1. 用 dayjs() 取得今天
   // 2. 用 dayjs.unix(timestamp) 取得日期
   // 3. 用 .diff() 計算天數差異
+  const today = dayjs();
+  const targetDay = dayjs.unix(timestamp);
+  const daysAgo = today.diff(targetDay, 'day');
+  return daysAgo === 0 ? '今天' : `${daysAgo}天`
 }
 
 /**
@@ -59,6 +68,24 @@ function getDaysAgo(timestamp) {
  */
 function validateOrderUser(data) {
   // 請實作此函式
+  const { name, tel, email, address, payment } = data;
+
+  let errors = [];
+  // 驗證 name 不可為空
+  if (!name) errors.push('name 不可為空')
+
+  // 驗證 tel 必須是 09 開頭的 10 位數字
+  const telRegex = /^09\d{8}$/
+  if (!telRegex.test(tel)) errors.push('tel 格式錯誤')
+  // 驗證 email 必須包含 @ 符號
+  if (!email.includes('@')) errors.push('email 格式錯誤')
+  // 驗證 address 不可為空
+  if (!address) errors.push('address 不可為空')
+  // 驗證 payment: 必須是 'ATM', 'Credit Card', 'Apple Pay' 其中之一
+  const definePayments = ['ATM', 'Credit Card', 'Apple Pay'];
+  if (!definePayments.includes(payment)) errors.push('payment 必須是 ATM , Credit Card , Apple Pay 其中之一')
+
+  return { isValid: errors.length === 0, errors }
 }
 
 /**
@@ -73,6 +100,22 @@ function validateOrderUser(data) {
  */
 function validateCartQuantity(quantity) {
   // 請實作此函式
+  if (!Number.isInteger(quantity)) return {
+    isValid: false,
+    error: '數量必須是正整數'
+  }
+
+  if (quantity < 1) return {
+    isValid: false,
+    error: '數量不可小於 1'
+  }
+
+  if (quantity > 99) return {
+    isValid: false,
+    error: '數量不可大於 99'
+  }
+
+  return { isValid: true }
 }
 
 /**
@@ -92,6 +135,7 @@ function validateCartQuantity(quantity) {
  */
 function formatCurrency(amount) {
   // 請實作此函式
+  return `NT$ ${amount.toLocaleString('zh-TW')}`
 }
 
 module.exports = {
