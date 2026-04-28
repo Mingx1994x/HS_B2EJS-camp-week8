@@ -173,7 +173,7 @@ function displayOrders(orders) {
   console.log('訂單列表：');
   console.log('========================================');
   orders.forEach((order, index) => {
-    const { id, user, createdAt, paidText, totalFormatted, products } = formatOrder(order);
+    const { id, user, createdAt, paidText, totalFormatted, products, daysAgo } = formatOrder(order);
     console.log(`訂單 ${index + 1}`);
     console.log('----------------------------------------');
     console.log(`訂單編號：${id}`);
@@ -183,7 +183,7 @@ function displayOrders(orders) {
     console.log(`顧客姓名：${user.payment}`);
     console.log(`訂單金額：${totalFormatted}`);
     console.log(`付款狀態：${paidText}`);
-    console.log(`建立時間：${createdAt} (${daysAgo}前)`);
+    console.log(`建立時間：${createdAt} (${daysAgo})`);
     console.log('----------------------------------------');
     console.log('商品明細：');
     products.forEach(product => {
