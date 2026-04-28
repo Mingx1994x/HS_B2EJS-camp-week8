@@ -33,11 +33,19 @@ async function addProductToCart(productId, quantity) {
     error
   }
 
-  const data = await addToCart(productId, quantity);
-  return {
-    success: true,
-    data
+  try {
+    const data = await addToCart(productId, quantity);
+    return {
+      success: true,
+      data
+    }
+  } catch (error) {
+    return {
+      success: false,
+      error: error.message
+    }
   }
+
 }
 
 /**
@@ -57,12 +65,18 @@ async function updateProduct(cartId, quantity) {
     error
   }
 
-  const data = await updateCartItem(cartId, quantity);
-  return {
-    success: true,
-    data
+  try {
+    const data = await updateCartItem(cartId, quantity);
+    return {
+      success: true,
+      data
+    }
+  } catch (error) {
+    return {
+      success: false,
+      error: error.message
+    }
   }
-
 }
 
 /**
